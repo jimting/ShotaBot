@@ -3,7 +3,7 @@ module.exports = function(robot) {
     //讀pics.txt的檔案
 	var fs = require("fs");
     var cheerio = require("cheerio");
-    filename = "pics.txt";
+    filename = "scripts/pics.txt";
 	var encode = "utf8";
 	fs.readFile(filename, encode,function(err, file) {
 	  //這邊的file就是所有的tag 隨機在裡面選一個img標籤 並取他的src印出

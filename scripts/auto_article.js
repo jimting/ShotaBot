@@ -43,7 +43,7 @@ function getRandomText(robot)
     }, function(e,r,b) 
     {
         if(e || !b) { return; }
-        fs.readFile('test.txt', 'utf8', function(err, data) {
+        fs.readFile('scripts/test.txt', 'utf8', function(err, data) {
             datas = data.split("\r\n");
             for(var data in datas)
                 console.log(datas[data])
@@ -58,7 +58,7 @@ function getRandomText(robot)
             var sentences = data.sentences[0];
             var random = Math.floor(Math.random()*50 + 1);
             robot.send("says","[emo"+random+"]"+sentences);
-            fs.appendFile('test.txt', "\r\n"+sentences, 'utf8', function (err) {
+            fs.appendFile('scripts/test.txt', "\r\n"+sentences, 'utf8', function (err) {
                 if (err) throw err;
                 console.log('Saved!');
             });
