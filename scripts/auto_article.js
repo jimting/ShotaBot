@@ -6,7 +6,7 @@ module.exports = function(robot) {
     var schedule = require("node-schedule");
     var rule = new schedule.RecurrenceRule();
     rule.dayOfWeek = [0, new schedule.Range(1, 6)];
-    rule.hour = 10;
+    rule.hour = 18;
     rule.minute = 30;
     var j = schedule.scheduleJob(rule, function() 
     {
@@ -15,7 +15,7 @@ module.exports = function(robot) {
 	
 	rule = new schedule.RecurrenceRule();
     rule.dayOfWeek = [0, new schedule.Range(1, 6)];
-    rule.hour = 00;
+    rule.hour = 08;
     rule.minute = 30;
     var j = schedule.scheduleJob(rule, function() 
 	{
