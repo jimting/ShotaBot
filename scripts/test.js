@@ -12,6 +12,12 @@ module.exports = function(robot)
         });
         getRandomText(datas, response);
     });
+	robot.hear(/#測試_現在時間/, function(response) 
+    {
+		var today=new Date();
+		var currentDateTime =today.getFullYear()+'年'+(today.getMonth()+1)+'月'+today.getDate()+'日('+today.getHours()+':'+today.getMinutes()+')';
+        response.reply("says",currentDateTime);
+    });
 }
 
 function ifDataRepeat(sentences, datas)
