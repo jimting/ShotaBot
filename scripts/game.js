@@ -6,7 +6,8 @@ module.exports = function(robot) {
     
 	rule = new schedule.RecurrenceRule();
     rule.dayOfWeek = [0, new schedule.Range(1, 6)];
-    rule.hour = 14;
+	//設定14:00 => 22:00發文 時區大錯亂www 晚...8小時
+    rule.hour = 06;
     rule.minute = 00;
     var j = schedule.scheduleJob(rule, function() 
 	{
@@ -14,7 +15,7 @@ module.exports = function(robot) {
     });
 	rule = new schedule.RecurrenceRule();
     rule.dayOfWeek = [0, new schedule.Range(1, 6)];
-    rule.hour = 08;
+    rule.hour = 00;
     rule.minute = 00;
     var j = schedule.scheduleJob(rule, function() 
 	{
@@ -22,7 +23,7 @@ module.exports = function(robot) {
     });
 	rule = new schedule.RecurrenceRule();
     rule.dayOfWeek = [0, new schedule.Range(1, 6)];
-    rule.hour = 20;
+    rule.hour = 12;
     rule.minute = 00;
     var j = schedule.scheduleJob(rule, function() 
 	{
