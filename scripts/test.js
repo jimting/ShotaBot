@@ -36,10 +36,12 @@ module.exports = function(robot)
                     result.push([$(mangas[i]).find("a").attr('href'), $(mangas[i]).find("img").attr('data-src'), $(mangas[i]).find(".caption").text()]);
                 }
                 var random_manga=Math.floor(Math.random()*mangas.length)+1;
-                console.log("開車！\n " + result[random_manga][1].replace("thumb", "cover") + "\n" + result[random_manga][2] + "\n https://nhentai.net"+result[random_manga][0]);
-                response.reply("loves", "隨機開車！ " + result[random_manga][1].replace("thumb", "cover"));
-                response.reply("loves", "作品名稱 : " + result[random_manga][2]);
-                response.reply("loves", "傳送門 : https://nhentai.net"+result[random_manga][0]);
+                response.reply("loves", "隨機開車！ " + result[random_manga][1].replace("thumb", "cover") + " <br/> 作品名稱 : " + result[random_manga][2]);
+                console.log("隨機開車！ " + result[random_manga][1].replace("thumb", "cover"));
+                //response.reply("loves", "作品名稱 : " + result[random_manga][2]);
+                console.log("作品名稱 : " + result[random_manga][2]);
+                response.reply("loves", "https://nhentai.net"+result[random_manga][0]);
+                console.log("https://nhentai.net"+result[random_manga][0]);
 
             });
         }
