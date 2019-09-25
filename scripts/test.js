@@ -16,6 +16,7 @@ module.exports = function(robot)
     {
         if(response.envelope.message.text.match("this_plurk_have_porn_content"))
         {
+            console.log("開始開車");
             var random_page = Math.floor(Math.random()*300)+1;
             var request = require("request");
             var fs = require("fs");
@@ -25,17 +26,18 @@ module.exports = function(robot)
                 method: "GET"
             }, function(e,r,b) 
             {
-                
                 if(e || !b) { return; }
                 var $ = cheerio.load(b);
                 var result = [];
                 var mangas = $(".gallery");
+                console.log("開始搜尋nhentai第"+random_page+"頁");
                 for(var i=0;i<mangas.length;i++) 
                 {
                     result.push([$(mangas[i]).find("a").attr('href'), $(mangas[i]).find("img").attr('data-src'), $(mangas[i]).find(".caption").text()]);
                 }
                 var random_manga=Math.floor(Math.random()*mangas.length)+1;
-                response.reply("loves","開車！\n " + result[random_manga][1] + "\n" + result[random_manga][2] + "\n https://nhentai.net"+result[random_manga][0])
+                console.log("開車！\n " + result[random_manga][1] + "\n" + result[random_manga][2] + "\n https://nhentai.net"+result[random_manga][0]);
+                response.reply("loves","開車！\n " + result[random_manga][1] + "\n" + result[random_manga][2] + "\n https://nhentai.net"+result[random_manga][0]);
 
             });
         }
