@@ -31,6 +31,7 @@ module.exports = function(robot)
                 var result = [];
                 var mangas = $(".gallery");
                 console.log("開始搜尋nhentai第"+random_page+"頁");
+                console.log(b);
                 for(var i=0;i<mangas.length;i++) 
                 {
                     result.push([$(mangas[i]).find("a").attr('href'), $(mangas[i]).find("img").attr('data-src'), $(mangas[i]).find(".caption").text()]);
