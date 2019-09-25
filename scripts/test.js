@@ -12,12 +12,12 @@ module.exports = function(robot)
         });
         getRandomText(datas, response);
     });
-	robot.hear(/#測試開車/, function(response) 
+    robot.hear(/#測試開車/, function(response) 
     {
-		if(response.envelope.message.text.match("this_plurk_have_porn_content"))
-	{
-		var random_page = Math.floor(Math.random()*300)+1;
-		var request = require("request");
+        if(response.envelope.message.text.match("this_plurk_have_porn_content"))
+    {
+        var random_page = Math.floor(Math.random()*300)+1;
+        var request = require("request");
         var fs = require("fs");
         var cheerio = require("cheerio");
         request({
@@ -34,11 +34,11 @@ module.exports = function(robot)
             {
                 result.push([$(mangas[i]).find("a").attr('href'), $(mangas[i]).find("img").attr('data-src'), $(mangas[i]).find(".caption").text()]);
             }
-			var random_manga=Math.floor(Math.random()*mangas.length)+1;
+            var random_manga=Math.floor(Math.random()*mangas.length)+1;
             response.reply("loves","開車！\n " + result[random_manga][1] + "\n" + result[random_manga][2] + "\n https://nhentai.net"+result[random_manga][0])
 
         });
-	}
+    }
     });
 }
 
