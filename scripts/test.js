@@ -15,30 +15,34 @@ module.exports = function(robot)
     robot.hear(/#測試開車/, function(response) 
     {
         if(response.envelope.message.text.match("this_plurk_have_porn_content"))
-    {
-        var random_page = Math.floor(Math.random()*300)+1;
-        var request = require("request");
-        var fs = require("fs");
-        var cheerio = require("cheerio");
-        request({
-            url: "https://nhentai.net/search/?q=male+only+shota&page="+random_page,
-            method: "GET"
-        }, function(e,r,b) 
         {
-            
-            if(e || !b) { return; }
-            var $ = cheerio.load(b);
-            var result = [];
-            var mangas = $(".gallery");
-            for(var i=0;i<mangas.length;i++) 
+            var random_page = Math.floor(Math.random()*300)+1;
+            var request = require("request");
+            var fs = require("fs");
+            var cheerio = require("cheerio");
+            request({
+                url: "https://nhentai.net/search/?q=male+only+shota&page="+random_page,
+                method: "GET"
+            }, function(e,r,b) 
             {
-                result.push([$(mangas[i]).find("a").attr('href'), $(mangas[i]).find("img").attr('data-src'), $(mangas[i]).find(".caption").text()]);
-            }
-            var random_manga=Math.floor(Math.random()*mangas.length)+1;
-            response.reply("loves","開車！\n " + result[random_manga][1] + "\n" + result[random_manga][2] + "\n https://nhentai.net"+result[random_manga][0])
+                
+                if(e || !b) { return; }
+                var $ = cheerio.load(b);
+                var result = [];
+                var mangas = $(".gallery");
+                for(var i=0;i<mangas.length;i++) 
+                {
+                    result.push([$(mangas[i]).find("a").attr('href'), $(mangas[i]).find("img").attr('data-src'), $(mangas[i]).find(".caption").text()]);
+                }
+                var random_manga=Math.floor(Math.random()*mangas.length)+1;
+                response.reply("loves","開車！\n " + result[random_manga][1] + "\n" + result[random_manga][2] + "\n https://nhentai.net"+result[random_manga][0])
 
-        });
-    }
+            });
+        }
+        else
+        {
+            response.reply("loves","開車狀態不通過，沒有加上r18標籤！><");
+        }
     });
 }
 
