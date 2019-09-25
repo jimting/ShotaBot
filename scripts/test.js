@@ -12,7 +12,7 @@ module.exports = function(robot)
         });
         getRandomText(datas, response);
     });
-    robot.hear(/#測試開車/, function(response) 
+    robot.hear(/#車來囉/, function(response) 
     {
         if(response.envelope.message.text.match("this_plurk_have_porn_content"))
         {
@@ -40,7 +40,7 @@ module.exports = function(robot)
                         result.push([$(mangas[i]).find("a").attr('href'), "https:" + $(mangas[i]).find("img").attr('src'), $(mangas[i]).find(".caption").text()]);
                 }
                 var random_manga=Math.floor(Math.random()*mangas.length)+1;
-                response.reply("loves", "https:" + result[random_manga][1].replace("thumb", "cover") + " \n 作品名稱 : " + result[random_manga][2]+" \n 神秘數字 : "+result[random_manga][0]);
+                response.reply("loves", result[random_manga][1].replace("thumb", "cover") + " \n 作品名稱 : " + result[random_manga][2]+" \n 神秘數字 : "+result[random_manga][0]);
                 console.log("隨機開車！ " + result[random_manga][1].replace("thumb", "cover"));
                 //response.reply("loves", "作品名稱 : " + result[random_manga][2]);
                 console.log("作品名稱 : " + result[random_manga][2]);
