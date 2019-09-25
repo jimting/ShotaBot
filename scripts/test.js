@@ -37,7 +37,7 @@ module.exports = function(robot)
                     result.push([$(mangas[i]).find("a").attr('href'), $(mangas[i]).find("img").attr('src'), $(mangas[i]).find(".caption").text()]);
                 }
                 var random_manga=Math.floor(Math.random()*mangas.length)+1;
-                response.reply("loves", "隨機開車！ https:" + result[random_manga][1].replace("thumb", "cover") + " / 作品名稱 : " + result[random_manga][2]+" / https://nhentai.net"+result[random_manga][0]);
+                response.reply("loves", "隨機開車！ https:" + result[random_manga][1].replace("thumb", "cover") + " / 作品名稱 : " + result[random_manga][2]+" / 神秘數字 : "+result[random_manga][0]);
                 console.log("隨機開車！ " + result[random_manga][1].replace("thumb", "cover"));
                 //response.reply("loves", "作品名稱 : " + result[random_manga][2]);
                 console.log("作品名稱 : " + result[random_manga][2]);
