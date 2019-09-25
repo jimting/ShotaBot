@@ -19,9 +19,9 @@ module.exports = function(robot) {
         });
         //response.reply("hi");
     }
-    /*
-    else if(response.envelope.message.text.match("this_plurk_have_porn_content"))
+    if(response.envelope.message.text.match("this_plurk_have_porn_content"))
     {
+        console.log("開始開車");
         var random_page = Math.floor(Math.random()*300)+1;
         var request = require("request");
         var fs = require("fs");
@@ -31,19 +31,28 @@ module.exports = function(robot) {
             method: "GET"
         }, function(e,r,b) 
         {
-            
             if(e || !b) { return; }
             var $ = cheerio.load(b);
             var result = [];
             var mangas = $(".gallery");
+            console.log("開始搜尋nhentai第"+random_page+"頁");
+            console.log(b);
             for(var i=0;i<mangas.length;i++) 
             {
-                result.push([$(mangas[i]).find("a").attr('href'), $(mangas[i]).find("img").attr('data-src'), $(mangas[i]).find(".caption").text()]);
+                if ($(mangas[i]).find("img").attr('data-src'))
+                    result.push([$(mangas[i]).find("a").attr('href'), $(mangas[i]).find("img").attr('data-src'), $(mangas[i]).find(".caption").text()]);
+                else
+                    result.push([$(mangas[i]).find("a").attr('href'), "https:" + $(mangas[i]).find("img").attr('src'), $(mangas[i]).find(".caption").text()]);
             }
             var random_manga=Math.floor(Math.random()*mangas.length)+1;
-            response.reply("loves","開車！\n " + result[random_manga][1] + "\n" + result[random_manga][2] + "\n https://nhentai.net"+result[random_manga][0])
+            response.reply("loves", result[random_manga][1].replace("thumb", "cover") + " \n 作品名稱 : " + result[random_manga][2]+" \n 神秘數字 : "+result[random_manga][0]);
+            console.log("隨機開車！ " + result[random_manga][1].replace("thumb", "cover"));
+                //response.reply("loves", "作品名稱 : " + result[random_manga][2]);
+            console.log("作品名稱 : " + result[random_manga][2]);
+                //response.reply("loves", "傳送門: https://nhentai.net"+result[random_manga][0]);
+            console.log("https://nhentai.net"+result[random_manga][0]);
 
         });
-    }*/
+    }
   });
 }
