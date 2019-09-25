@@ -12,11 +12,33 @@ module.exports = function(robot)
         });
         getRandomText(datas, response);
     });
-	robot.hear(/#測試_現在時間/, function(response) 
+	robot.hear(/#測試開車/, function(response) 
     {
-		var today=new Date();
-		var currentDateTime =today.getFullYear()+'年'+(today.getMonth()+1)+'月'+today.getDate()+'日('+today.getHours()+':'+today.getMinutes()+')';
-        response.reply("says",currentDateTime);
+		if(response.envelope.message.text.match("this_plurk_have_porn_content"))
+	{
+		var random_page = Math.floor(Math.random()*300)+1;
+		var request = require("request");
+        var fs = require("fs");
+        var cheerio = require("cheerio");
+        request({
+            url: "https://nhentai.net/search/?q=male+only+shota&page="+random_page,
+            method: "GET"
+        }, function(e,r,b) 
+        {
+            
+            if(e || !b) { return; }
+            var $ = cheerio.load(b);
+            var result = [];
+            var mangas = $(".gallery");
+            for(var i=0;i<mangas.length;i++) 
+            {
+                result.push([$(mangas[i]).find("a").attr('href'), $(mangas[i]).find("img").attr('data-src'), $(mangas[i]).find(".caption").text()]);
+            }
+			var random_manga=Math.floor(Math.random()*mangas.length)+1;
+            response.reply("loves","開車！\n " + result[random_manga][1] + "\n" + result[random_manga][2] + "\n https://nhentai.net"+result[random_manga][0])
+
+        });
+	}
     });
 }
 
