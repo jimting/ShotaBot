@@ -37,9 +37,7 @@ module.exports = function(robot)
                 }
                 var random_manga=Math.floor(Math.random()*mangas.length)+1;
                 console.log("開車！\n " + result[random_manga][1] + "\n" + result[random_manga][2] + "\n https://nhentai.net"+result[random_manga][0]);
-                response.reply("loves", "開車！ " + result[random_manga][1]);
-                response.reply("loves", result[random_manga][2] );
-                response.reply("loves", " https://nhentai.net"+result[random_manga][0]);
+                response.reply("loves","開車！ " + result[random_manga][1] + "<br>" + result[random_manga][2] + "<br> https://nhentai.net"+result[random_manga][0]);
 
             });
         }
