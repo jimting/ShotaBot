@@ -34,7 +34,10 @@ module.exports = function(robot)
                 console.log(b);
                 for(var i=0;i<mangas.length;i++) 
                 {
-                    result.push([$(mangas[i]).find("a").attr('href'), $(mangas[i]).find("img").attr('src'), $(mangas[i]).find(".caption").text()]);
+                    if ($(mangas[i]).find("img").attr('data-src'))
+                        result.push([$(mangas[i]).find("a").attr('href'), $(mangas[i]).find("img").attr('data-src'), $(mangas[i]).find(".caption").text()]);
+                    else
+                        result.push([$(mangas[i]).find("a").attr('href'), $(mangas[i]).find("img").attr('src'), $(mangas[i]).find(".caption").text()]);
                 }
                 var random_manga=Math.floor(Math.random()*mangas.length)+1;
                 response.reply("loves", "隨機開車！ https:" + result[random_manga][1].replace("thumb", "cover") + " / 作品名稱 : " + result[random_manga][2]+" / 神秘數字 : "+result[random_manga][0]);
